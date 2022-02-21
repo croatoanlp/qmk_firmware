@@ -35,15 +35,15 @@ const uint32_t PROGMEM unicode_map[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_edinburgh41(
-    KC_ESC,          KC_Q,     KC_W,     KC_E,     KC_R,      KC_T,                      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
-    LT(1, KC_CAPS),  KC_A,     KC_S,     KC_D,     KC_F,      KC_G,                      KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_ENTER,
-    RALT(KC_TAB),    KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,                      KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_SCLN,
-                                          LCTL_T(MOD_LGUI),   LALT_T(KC_SPC),   KC_NO,   LOWER,    RAISE
+    KC_ESC,          KC_Q,     KC_W,     KC_E,     KC_R,      KC_T,              KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
+    LT(1, KC_CAPS),  KC_A,     KC_S,     KC_D,     KC_F,      KC_G,              KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_ENTER,
+    KC_LSFT,         KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,              KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,
+                                          LCTL_T(KC_LGUI),    KC_SPC,   KC_NO,   LOWER,    RAISE
   ),
   
   [_LOWER] = LAYOUT_edinburgh41(
     KC_TAB,   KC_1,      KC_2,     KC_3,     KC_4,      KC_5,               KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_DEL,
-    _______,  _______,   KC_NO,    KC_BTN1,  KC_BTN2,   _______,            KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  KC_BSLS,
+    _______,  _______,   KC_NO,    KC_BTN2,  KC_BTN1,   KC_BTN2,            KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  KC_BSLS,
     KC_LSFT,  _______,   _______,  _______,  KC_MINS,   KC_EQL,             KC_LBRC,  KC_RBRC,  KC_QUOT,  _______,  _______,  KC_RSFT,
                                              KC_LGUI,   _______,  _______,  _______,  UC_MOD
   ),
@@ -74,15 +74,21 @@ uint32_t layer_state_set_user(uint32_t state) {
     // Keypress behaviour: Copy the content of the case _RAISE. Set input_keycodes.keycode_up = to the keycode you want to press when moving the thumbstick up etc.
     // Scroll behaviour: Copy the content of the case _LOWER.
     case _BASE:
+      writePinHigh(LED1);
+      writePinHigh(LED2);
       thumbstick_mode_set(THUMBSTICK_MODE_MOUSE);
       break;
     
     case _RAISE:
-      thumbstick_mode_set(THUMBSTICK_MODE_MOUSE);
+      writePinLow(LED1);
+      writePinHigh(LED2);
+      thumbstick_mode_set(THUMBSTICK_MODE_SCROLL);
       break;
       
     case _LOWER:
-      thumbstick_mode_set(THUMBSTICK_MODE_SCROLL);
+      writePinLow(LED2);
+      writePinHigh(LED1);
+      thumbstick_mode_set(THUMBSTICK_MODE_MOUSE);
       break;
   }
   return state;

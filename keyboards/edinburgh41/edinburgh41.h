@@ -28,3 +28,6 @@
     { K50, K51, K52, K53, K54, K55 }, \
     { K60, K61, K62, K63, K64, KC_NO } \
 }
+
+#define LED1 B0
+#define LED2 D5
