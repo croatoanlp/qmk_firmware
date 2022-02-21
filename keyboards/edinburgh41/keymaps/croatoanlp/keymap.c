@@ -42,14 +42,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   
   [_LOWER] = LAYOUT_edinburgh41(
-    KC_TAB,   KC_1,      KC_2,     KC_3,     KC_4,      KC_5,               KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_DEL,
+    KC_TAB,   KC_1,      KC_2,     KC_3,     KC_4,      KC_5,               KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_BSPC,
     _______,  _______,   KC_NO,    KC_BTN2,  KC_BTN1,   KC_BTN2,            KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  KC_BSLS,
     KC_LSFT,  _______,   _______,  _______,  KC_MINS,   KC_EQL,             KC_LBRC,  KC_RBRC,  KC_QUOT,  _______,  _______,  KC_RSFT,
                                              KC_LGUI,   _______,  _______,  _______,  UC_MOD
   ),
   
   [_RAISE] = LAYOUT_edinburgh41(
-    KC_GRAVE,  _______,       _______,    X(euro),     _______,     _______,            _______,    XP(ue, UE),    _______,    XP(oe, OE),    _______,   _______,
+    KC_GRAVE,  _______,       _______,    X(euro),     _______,     _______,            _______,    XP(ue, UE),    _______,    XP(oe, OE),    _______,   KC_DEL,
     _______,   XP(ae, AE),    X(ss),      _______,     _______,     _______,            _______,    _______,       _______,    _______,       _______,   _______,
     KC_LSFT,   KC_F1,         KC_F2,      KC_F3,       KC_F4,       KC_F5,              KC_F6,      KC_F7,         KC_F8,      KC_F9,         KC_F10,    KC_RSFT,
                                                        KC_F11,      KC_F12,  _______,   ADJUST,     _______
